@@ -1,0 +1,86 @@
+/* Fullscreen background */
+.forgot-container {
+  height: 100vh;
+  width: 100%;
+  background: url('/bg.png') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.forgot-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Logo */
+.forgot-logo {
+  height: 60px;
+  margin: 0 auto 1rem;
+  display: block;
+}
+
+/* Title and subtitle */
+.forgot-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.forgot-subtitle {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 1.5rem;
+}
+
+/* Input with icon */
+.input-wrapper {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 2.5rem 12px 1rem; /* space for icon */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+ 
+.input-wrapper input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px #bbf7d0;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+}
+
+/* Button */
+.next-button {
+  width: 100%;
+  padding: 12px 2.5rem 12px 1rem; /* space for icon */
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.forgot-button:hover {
+  background: #15803d;
+}
