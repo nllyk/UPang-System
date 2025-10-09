@@ -5,16 +5,21 @@ import Signup from "./components/Signup";
 import ForgotPass from "./components/ForgotPass";
 import VerifyCode from "./components/VerifyCode";
 import ResetPass from "./components/ResetPass";
+import Dashboard from "./components/Dashboard";
 
 const App: React.FC = () => {
   return (
     <Router>
       <Routes>
+         {/* Auth Routes */}
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpass" element={<ForgotPass />} />
         <Route path="/verifycode" element={<VerifyCode />} />
         <Route path="/resetpass" element={<ResetPass />} />
+        
+         {/* Protected Route */}
+        <Route path="/dashboard" element={<Dashboard />} />
       </Routes>
     </Router>
   );

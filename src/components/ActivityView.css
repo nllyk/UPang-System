@@ -1,0 +1,169 @@
+.activity-full {
+  width: auto;
+  height: auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.activity-header {
+  width: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.activity-info h2 {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+.meta {
+  font-size: 14px;
+  color: #555;
+  margin-top: 4px;
+}
+
+.due {
+  font-size: 13px;
+  color: #888;
+  margin-top: 2px;
+}
+
+/* Body layout */
+.activity-body {
+  display: flex;
+  gap: 30px;
+  flex: 1;
+}
+
+.activity-description {
+  flex: 3;
+  color: #333;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.activity-description p {
+  margin-bottom: 20px;
+}
+
+.attachments h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  color: #444;
+}
+
+.attachments ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 8px;
+}
+
+.attachments li {
+  margin-bottom: 6px;
+}
+
+.attachments a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.attachments a:hover {
+  text-decoration: underline;
+}
+
+/* Work Panel */
+.work-panel {
+  flex: 1.5;
+  background: #f7f9fb;
+  border-radius: 12px;
+  padding: 18px 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.work-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.work-header h3 {
+  margin: 0;
+  font-size: 16px;
+  color: #333;
+}
+
+.status {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status.assigned {
+  color: #4CAF50;
+}
+
+.work-upload {
+  margin-top: 10px;
+  flex-grow: 1;
+}
+
+.placeholder {
+  font-size: 14px;
+  color: #777;
+  font-style: italic;
+}
+
+.add-section {
+  margin-top: 10px;
+}
+
+.add-btn {
+  background: white;
+  border: 1.5px solid #ccc;
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #f1f1f1;
+}
+
+.work-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.done-btn {
+  background: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.done-btn:hover {
+  background: #3b923f;
+}

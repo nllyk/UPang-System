@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { FaUser, FaLock } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css"; 
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [role, setRole] = useState<"student" | "teacher">("student");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,7 +15,9 @@ const Login: React.FC = () => {
     e.preventDefault();
     console.log({ role, email, password, remember });
   };  
-
+  const handleLogin = () => {
+    navigate("/dashboard"); // redirect after login
+  };
   return (
     <div className="auth-container">
       {/* Left Side */}
@@ -50,7 +54,7 @@ const Login: React.FC = () => {
       </div>
 
       <div className="input-wrapper">
-        <FaLock className="input-icon" />
+        <div className="input-icon" />
         <input
           type="password"
           placeholder="Password"
@@ -72,9 +76,7 @@ const Login: React.FC = () => {
         </label>
       </div>
 
-      <button type="submit" className="auth-button">
-        Sign Up
-      </button>
+            <button onClick={handleLogin} className="auth-button"> Sign Up</button>
      
     </form>
 
