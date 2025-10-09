@@ -6,6 +6,8 @@ import ForgotPass from "./components/ForgotPass";
 import VerifyCode from "./components/VerifyCode";
 import ResetPass from "./components/ResetPass";
 import Dashboard from "./components/Dashboard";
+import Grades from "./components/Grades";
+import Settings from "./components/Settings";
 
 const App: React.FC = () => {
   return (
@@ -20,6 +22,8 @@ const App: React.FC = () => {
         
          {/* Protected Route */}
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/grades" element={<Grades />} />
+         <Route path="/settings" element={<Settings />} />
       </Routes>
     </Router>
   );

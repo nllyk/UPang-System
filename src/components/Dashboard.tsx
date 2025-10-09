@@ -15,12 +15,18 @@ import ClassDetails from "./ClassDetails";
 import ClassesPage from "./ClassesPage";
 import ActivityView from "./ActivityView";
 import Grades from "./Grades";
+import Notifications from "./Notifications";
+import Settings from "./Settings";
+import Logout from "./Logout";
+
+
 
 const Dashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedClass, setSelectedClass] = useState<any>(null);
   const [activePage, setActivePage] = useState("home");
   const [selectedActivity, setSelectedActivity] = useState<any>(null);
+
 
   const classes = [
     {
@@ -99,7 +105,7 @@ const Dashboard: React.FC = () => {
             <FaClipboardList /> {isSidebarOpen && <span>Classes</span>}
           </button>
 
-          <button
+         <button
             className={activePage === "grades" ? "active" : ""}
             onClick={() => handleTabClick("grades")}
           >
@@ -175,25 +181,13 @@ const Dashboard: React.FC = () => {
             />
           )}
 
-           {/* 📊 Grades Page */}
-          {activePage === "grades" && (
-            <div className="class-grid">
-              {classes.map((cls) => (
-                <Grades
-                  key={cls.id}
-                  subject={cls.subject}
-                  professor={cls.professor}
-                  color={cls.color}
-                  grades={cls.grades}
-                  onClick={() => console.log("Clicked grade:", cls.subject)}
-                />
-              ))}
-            </div>
-          )}
+          {activePage === "grades" && <Grades />}
+          {activePage === "notifications" && <Notifications />}
+          {activePage === "settings" && <Settings/>}
+          {activePage === "logout" && <Logout/>}
+
+
           {/* Other Tabs */}
-          {activePage === "notifications" && <div>Notifications</div>}
-          {activePage === "settings" && <div>Settings</div>}
-          {activePage === "logout" && <div>Logging out...</div>}
         </main>
       </div>
     </div>
