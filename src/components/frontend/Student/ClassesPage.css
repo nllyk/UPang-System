@@ -1,0 +1,100 @@
+.classes-page {
+  background-color: #f4f6f5;
+  min-height: 100vh;
+  padding: 1.5rem;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+}
+
+.tab {
+  background: none;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  font-weight: 500;
+  color: #555;
+  font-size: 1rem;
+}
+
+.tab.active {
+  border-bottom: 3px solid #5d9b63;
+  color: #2d6a2d;
+  font-weight: 600;
+}
+
+.tasks-container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 1.5rem;
+}
+
+/* Section styles */
+.classes-section {
+  border-bottom: 1px solid #ccc;
+  padding: 0.6rem 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  padding: 0.6rem 0;
+}
+
+.section-content {
+  padding-left: 1rem;
+  margin-top: 0.5rem;
+}
+
+.activity-card {
+  background: #fff;
+  padding: 0.75rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+.activity-card:hover {
+  transform: scale(1.01);
+  background: #f7fff7;
+}
+
+.activity-title {
+  font-weight: 600;
+  color: #2b6b2b;
+}
+
+.activity-meta {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.due-date {
+  color: #999;
+  font-size: 0.8rem;
+}
+
+.empty-text {
+  font-style: italic;
+  color: #888;
+  padding: 0.5rem;
+}

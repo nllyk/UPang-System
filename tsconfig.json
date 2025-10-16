@@ -16,6 +16,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": ["src"],
+  "include": ["src", "react-upang-system/src/components/Admin", "react-upang-system/src/components/Student", "react-upang-system/src/components/Admin", "react-upang-system/src/App.tsx", "frontend/src/components/Admin/Activities.tsx", "frontend/src/components/Admin/People.tsx", "frontend/src/components/Admin/Lessons.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

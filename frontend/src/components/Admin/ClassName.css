@@ -1,0 +1,80 @@
+/* ===== CLASSNAME PAGE STYLES ===== */
+.classname-container {
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  max-width: 900px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.classname-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.classname-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+}
+
+.classname-header p {
+  font-size: 0.95rem;
+  color: #666;
+  margin-top: 0.3rem;
+}
+
+/* Tabs navigation */
+.classname-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.classname-tabs a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 4px;
+  transition: all 0.2s ease;
+}
+
+.classname-tabs a:hover {
+  color: #4CAF50;
+}
+
+.classname-tabs a.active-tab {
+  color: #4CAF50;
+  border-bottom: 2px solid #4CAF50;
+  font-weight: 600;
+}
+
+/* Main content section */
+.classname-content {
+  text-align: center;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 10px;
+  min-height: 200px;
+  box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .classname-container {
+    padding: 1rem;
+  }
+
+  .classname-tabs {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .classname-tabs a {
+    font-size: 0.9rem;
+  }
+}

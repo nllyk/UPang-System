@@ -1,0 +1,325 @@
+.student-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+.student-dashboard .dashboard-header {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  background-color: #4CAF50;
+  color: white;
+  padding: .5px 15px;
+}
+
+.student-dashboard .dashboard-header .menu-btn {
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  cursor: pointer;
+  transform: 0.3s ease;
+}
+.student-dashboard .dashboard-header .menu-btn.active {
+  background-color: #1a8f3c;
+  color: white;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+.student-dashboard .dashboard-header .menu-btn:hover {
+  background-color: #1a8f3c;
+  color: #fff;
+}
+
+.student-dashboard .dashboard-header .logo {
+  margin: 0;
+  height: 30px;
+  margin-left: 10px;
+}
+
+.student-dashboard .dashboard-header h1 {
+  margin-left: 10px;
+  margin-bottom: 13px;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+
+.student-dashboard .dashboard-header .menu-btn button:hover {
+  background: #4a7c4b;
+}
+
+/* Body */
+.student-dashboard .dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+/* Sidebar */
+.student-dashboard .sidebar {
+  width: 100%;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s ease;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.student-dashboard .sidebar.collapsed {
+  width: 60px;
+  align-items: center;
+}
+.student-dashboard .sidebar.open {
+  width: 250px;
+  padding-left: 20px;
+}
+
+.student-dashboard .sidebar button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 25px;
+  margin: 15px 0;
+  cursor: pointer;
+  gap: 10px;
+  width: 100%;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transform: all 0.3s ease;
+}
+.student-dashboard .sidebar button:hover {
+  color: white;
+  background: #1a8f3c;
+}
+
+.student-dashboard .dashboard-body .sidebar button.active {
+  background-color: #1a8f3c;
+  color: white;
+  font-weight: bold;
+  border-left: 4px solid #fff;
+  transition: 0.3s ease;
+}
+
+/* Main Content */
+.student-dashboard .main-content {
+  flex: 1;
+  width: 100%;
+  padding: 30px;
+  background: #f8f9fa;
+}
+
+.student-dashboard .join-class {
+  margin-bottom: 20px;
+}
+
+.student-dashboard .join-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+}
+.student-dashboard .join-class button:hover {
+  background: #3d8640;
+}
+
+/* Class Cards */
+.student-dashboard .class-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  justify-content: flex-start;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 30px;
+  gap: 20px;
+}
+.student-dashboard .green .card-header {
+  background-color: #4CAF50;
+  color: white;
+}
+.student-dashboard .blue .card-header {
+  background-color: #2196F3;
+  color: white;
+}
+.student-dashboard .orange .card-header {
+  background-color: #FF9800;
+  color: white;
+}
+.student-dashboard .red .card-header {
+  background-color: #F44336;
+  color: white;
+}
+.student-dashboard .class-card {
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  background: rgb(243, 243, 243);
+}
+
+.student-dashboard .card-header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  padding: 12px;
+  color: white;
+}
+
+.student-dashboard .card-icon {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+.student-dashboard .class-info h3 {
+  margin: 0 1rem;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.student-dashboard .class-info p {
+  margin: 0 1rem;
+  font-size: 15px;
+  color: #ebebeb;
+}
+.student-dashboard .class-body {
+  height: 1rem;
+  padding: 12px ;
+  font-size: 14px;
+}
+
+.student-dashboard .empty-msg {
+  padding: 8px;
+  color: gray;
+  font-style: italic;
+}
+
+/* Card Footer */
+.student-dashboard .card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.student-dashboard .delete-icon {
+  font-size: 16px;
+  color: gray;
+  cursor: pointer;
+}
+.student-dashboard .delete-icon:hover {
+  color: red;
+}
+
+/* Colors */
+.student-dashboard .green {
+  border-top: 5px solid #016f05;
+}
+.student-dashboard .blue {
+  border-top: 5px solid #003e71;
+}
+.student-dashboard .orange {
+  border-top: 5px solid #915804;
+}
+.student-dashboard .red {
+  border-top: 5px solid #780e06;
+}
+
+/* ✅ RESPONSIVE STYLES */
+@media (max-width: 1200px) {
+  .student-dashboard .class-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .student-dashboard .class-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .student-dashboard .dashboard-header h1 {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .student-dashboard .dashboard-body {
+    flex-direction: column;
+  }
+
+  .student-dashboard .sidebar {
+    position: absolute;
+    z-index: 100;
+    height: 100vh;
+    top: 50px;
+    left: 0;
+    background: #eee;
+    width: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .student-dashboard .sidebar.open {
+    width: 200px;
+    padding-left: 10px;
+  }
+
+  .student-dashboard .main-content {
+    padding: 15px;
+  }
+
+  .student-dashboard .class-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .student-dashboard .dashboard-header h1 {
+    font-size: 14px;
+  }
+
+  .student-dashboard .join-btn {
+    width: 100%;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-dashboard .dashboard-header {
+    height: 45px;
+    padding: 5px 10px;
+  }
+
+  .student-dashboard .logo {
+    height: 25px;
+  }
+
+  .student-dashboard .dashboard-header h1 {
+    font-size: 12px;
+  }
+
+  .student-dashboard .class-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .student-dashboard .join-btn {
+    font-size: 12px;
+    padding: 8px 15px;
+  }
+
+  .student-dashboard .sidebar button {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+}

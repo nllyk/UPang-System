@@ -1,0 +1,126 @@
+.page-bg {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("/bg.png") no-repeat center center/cover;
+  padding: 1rem; /* for small screens */
+  box-sizing: border-box;
+}
+
+/* Card container */
+.card-container {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  font-size: 1.3rem;
+}
+
+/* Logo */
+.logo {
+  height: 60px;
+  margin: 1.5rem auto 1rem auto;
+}
+
+/* Input wrapper for eye toggle */
+.input-wrapper {
+  position: relative;
+  margin: 1rem 0;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 12px 40px 12px 12px; /* space for eye icon */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.input-wrapper input:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 0 2px #86efac;
+}
+
+/* Eye toggle */
+.toggle-eye {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+/* Save button */
+.reset-btn {
+  width: 100%;
+  padding: 12px;
+  background: #16a34a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.reset-btn:hover {
+  background: #15803d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card-container {
+    max-width: 90%;
+    padding: 1.5rem;
+  }
+  .logo {
+    height: 50px;
+  }
+  .input-wrapper input {
+    padding: 10px 36px 10px 12px;
+    font-size: 0.95rem;
+  }
+  .reset-btn {
+    padding: 10px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    max-width: 100%;
+    padding: 1rem;
+  }
+  .logo {
+    height: 45px;
+  }
+  .input-wrapper input {
+    padding: 10px 34px 10px 10px;
+    font-size: 0.9rem;
+  }
+  .reset-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}

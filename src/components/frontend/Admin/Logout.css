@@ -1,0 +1,70 @@
+.logout-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background-color: #f9fafb;
+}
+
+.logout-card {
+  background: #fff;
+  width: 420px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.logout-icon {
+  font-size: 60px;
+  color: #4caf50;
+  margin-bottom: 15px;
+}
+
+.logout-card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.logout-card p {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 15px;
+}
+
+.logout-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logout-btn,
+.cancel-btn {
+  border: none;
+  padding: 10px 24px;
+  font-size: 15px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background-color: rgb(255, 49, 49);
+  color: white;
+}
+
+.logout-btn:hover {
+  background-color: red;
+}
+
+.cancel-btn {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #bdbdbd;
+}

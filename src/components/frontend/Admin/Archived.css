@@ -1,0 +1,28 @@
+.archived-page {
+  padding: 20px;
+  background-color: #f5f6f8;
+  min-height: 100vh;
+}
+
+.archived-page h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  margin-left: 60px;
+}
+
+.archived-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+  padding-left: 60px;
+}
+
+@media (max-width: 900px) {
+  .archived-grid {
+    justify-content: center;
+    padding-left: 0;
+  }
+}

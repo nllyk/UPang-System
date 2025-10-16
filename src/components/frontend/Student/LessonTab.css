@@ -1,0 +1,135 @@
+.lessons-tab {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Centers the list and prevents overflow */
+.lesson-list {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Lesson card */
+.lesson-item {
+  display: flex;
+  align-items: center;
+  background: #f1f5f9;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lesson-item:hover {
+  background: #e3f2fd;
+  transform: translateY(-2px);
+}
+
+.lesson-icon {
+  margin-right: 10px;
+  color: #3f67b8;
+  font-size: 18px;
+}
+
+.lt-empty {
+  margin-top: 1rem;
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}
+
+/* ======================================= */
+/* 📱 RESPONSIVE DESIGN BELOW 🔽 */
+/* ======================================= */
+
+/* Tablets and small laptops */
+@media (max-width: 1024px) {
+  .lessons-tab {
+    padding: 16px;
+  }
+
+  .lesson-list {
+    max-width: 700px;
+  }
+
+  .lesson-item {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  .lesson-icon {
+    font-size: 16px;
+    margin-right: 8px;
+  }
+}
+
+/* Large phones and small tablets */
+@media (max-width: 768px) {
+  .lessons-tab {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .lesson-list {
+    max-width: 90%;
+    gap: 0.8rem;
+  }
+
+  .lesson-item {
+    padding: 9px 12px;
+    font-size: 13.5px;
+  }
+
+  .lesson-icon {
+    font-size: 15px;
+    margin-right: 7px;
+  }
+
+  .lt-empty {
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .lessons-tab {
+    padding: 10px;
+    box-shadow: none;
+    border-radius: 8px;
+  }
+
+  .lesson-list {
+    max-width: 100%;
+  }
+
+  .lesson-item {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .lesson-icon {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+
+  .lt-empty {
+    font-size: 12.5px;
+    text-align: center;
+    margin-top: 0.8rem;
+  }
+}

@@ -1,0 +1,79 @@
+.student-settings-main {
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 800px;
+  margin: 30px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.student-settings-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.student-settings-tabs button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: #e0e0e0;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.student-settings-tabs button.active {
+  background: #28a745;
+  color: white;
+}
+
+.student-settings-content {
+  margin-top: 15px;
+}
+
+/* ---------------------- */
+/* 📱 RESPONSIVE DESIGN  */
+/* ---------------------- */
+
+@media (max-width: 768px) {
+  .student-settings-main {
+    max-width: 95%;
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  .student-settings-tabs {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .student-settings-tabs button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  .student-settings-content {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .student-settings-main {
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .student-settings-tabs button {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .student-settings-content {
+    font-size: 14px;
+  }
+}

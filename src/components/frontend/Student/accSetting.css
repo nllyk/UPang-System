@@ -1,0 +1,157 @@
+.account-settings-container {
+  text-align: center;
+}
+
+/* Make the profile-section center and allow responsive sizing */
+.profile-section {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive profile image / placeholder
+   - clamp(min, preferred, max) lets it scale nicely across breakpoints
+*/
+.profile-pic img,
+.profile-pic .placeholder {
+  width: clamp(70px, 12vw, 120px);
+  height: clamp(70px, 12vw, 120px);
+  border-radius: 50%;
+  background: #ddd;
+  display: inline-block;
+  object-fit: cover;    /* important for actual images */
+  overflow: hidden;
+}
+
+/* Placeholder styling for when there's no image */
+.profile-pic .placeholder {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  font-weight: 600;
+  font-size: clamp(14px, 2.5vw, 18px); /* responsive text inside placeholder */
+}
+
+/* Upload button */
+.upload-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: transparent;
+  color: #007b00;
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+.upload-btn input {
+  display: none;
+}
+
+/* Account form layout */
+.account-section {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.account-section label {
+  display: block;
+  margin-bottom: 15px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.account-section input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+  font-size: 15px;
+}
+
+/* Buttons */
+.account-section button {
+  display: block;
+  margin: 15px auto;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 25px;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 15px;
+}
+.account-section button:hover {
+  background-color: #218838;
+}
+
+/* ---------------------- */
+/* 📱 RESPONSIVE DESIGN  */
+/* ---------------------- */
+
+@media (max-width: 768px) {
+  .account-settings-container {
+    padding: 15px;
+  }
+
+  /* Slightly smaller profile image on tablets */
+  .profile-pic img,
+  .profile-pic .placeholder {
+    width: clamp(70px, 14vw, 100px);
+    height: clamp(70px, 14vw, 100px);
+  }
+
+  .upload-btn {
+    font-size: 14px;
+  }
+
+  .account-section input {
+    font-size: 15px;
+  }
+
+  .account-section button {
+    padding: 10px 20px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-settings-container {
+    padding: 10px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  /* Mobile: stack everything nicely and use smaller profile image */
+  .profile-section {
+    gap: 8px;
+  }
+
+  .profile-pic img,
+  .profile-pic .placeholder {
+    width: clamp(60px, 20vw, 90px);
+    height: clamp(60px, 20vw, 90px);
+  }
+
+  .upload-btn {
+    font-size: 13px;
+  }
+
+  .account-section input {
+    font-size: 14px;
+    padding: 7px;
+  }
+
+  .account-section button {
+    font-size: 14px;
+    padding: 8px 18px;
+  }
+}
