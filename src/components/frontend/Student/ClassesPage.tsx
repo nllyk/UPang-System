@@ -1,115 +1,128 @@
-import React, { useEffect, useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import React, { useState } from "react";
+import {
+  FaTimes,
+  FaCheck,
+  FaExclamationTriangle,
+  FaClipboard,
+  FaBook,
+} from "react-icons/fa";
 import "./ClassesPage.css";
+import ActivityView from "./ActivityView";
 
-interface Props {
-  onSelectActivity: (activity: any) => void;
+interface Activity {
+  id: number;
+  title: string;
 }
 
-const ClassesPage: React.FC<Props> = ({ onSelectActivity }) => {
-  const [activities, setActivities] = useState<any[]>([]);
-  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
-  const [activeTab, setActiveTab] = useState("Assigned");
+interface Subject {
+  id: number;
+  code: string;
+  activities: Activity[];
+}
 
-  useEffect(() => {
-    // Sample data (replace with real data later)
-    const data = [
-      { id: 1, title: "Activity 1", className: "ITE 391" },
-      { id: 2, title: "Project Proposal", className: "ITE 391", dueDate: "2025-10-10" },
-      { id: 3, title: "Quiz 1", className: "ITE 301", dueDate: "2025-10-13" },
-    ];
-    setActivities(data);
-  }, []);
+const ClassesPage: React.FC = () => {
+  const [activeTab, setActiveTab] = useState<"assigned" | "missed" | "done">("assigned");
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
 
-  const categorizeActivities = (activities: any[]) => {
-    const now = new Date();
-    const oneWeekLater = new Date(now);
-    oneWeekLater.setDate(now.getDate() + 7);
-    const nextWeek = new Date(now);
-    nextWeek.setDate(now.getDate() + 14);
+  const subjects: Subject[] = [
+    {
+      id: 1,
+      code: "ITE391",
+      activities: [
+        { id: 1, title: "Activity 1" },
+        { id: 2, title: "Activity 2" },
+      ],
+    },
 
-    return {
-      "No Due Date": activities.filter((a) => !a.dueDate),
-      "This Week": activities.filter((a) => a.dueDate && new Date(a.dueDate) <= oneWeekLater),
-      "Next Week": activities.filter(
-        (a) => a.dueDate && new Date(a.dueDate) > oneWeekLater && new Date(a.dueDate) <= nextWeek
-      ),
-      Later: activities.filter((a) => a.dueDate && new Date(a.dueDate) > nextWeek),
-    };
+  ];
+
+  const handleUploadClick = (activity: Activity) => {
+    setSelectedActivity(activity);
   };
 
-  const getLabelsForTab = () => {
-    if (activeTab === "Missed") {
-      return ["This Week", "Last Week", "Earlier", "Later"];
-    } else if (activeTab === "Done") {
-      return ["No Due Date", "Done Early", "This Week", "Last Week", "Earlier"];
-    } else {
-      return ["No Due Date", "This Week", "Next Week", "Later"];
-    }
-  };
-
-  const categorized = categorizeActivities(activities);
-  const labels = getLabelsForTab();
-
-  const toggleSection = (section: string) =>
-    setOpenSections((prev) => ({ ...prev, [section]: !prev[section] }));
-
-  const handleActivityClick = (activity: any) => {
-    onSelectActivity(activity);
+  const handleCloseView = () => {
+    setSelectedActivity(null);
   };
 
   return (
-    <div className="classes-page">
-      {/* Tabs */}
-      <div className="tabs">
-        {["Assigned", "Missed", "Done"].map((tab) => (
-          <button
-            key={tab}
-            className={`tab ${activeTab === tab ? "active" : ""}`}
-            onClick={() => setActiveTab(tab)}
-          >
-            {tab}
-          </button>
-        ))}
+    <div className="classes-container">
+      {/* Header */}
+      <div className="classes-header">
+        <h2>Computer Programming</h2>
+        <p>Professor: Engr. Maria Santos</p>
       </div>
 
-      {/* Tasks Container */}
-      <div className="tasks-container">
-        <h1>Tasks</h1>
+      {/* Subject + Activities */}
+      <div className="classes-list">
+        {subjects.map((subject) => (
+          <div className="subject-section" key={subject.id}>
+            <h3 className="subject-title">
+              <FaBook className="subject-icon" /> {subject.code}
+            </h3>
 
-        {labels.map((label) => (
-          <div key={label} className="classes-section">
-            <div className="section-header" onClick={() => toggleSection(label)}>
-              <span>{label}</span>
-              {openSections[label] ? <FaChevronUp /> : <FaChevronDown />}
-            </div>
+            <div className="activity-list">
+              {subject.activities.map((activity) => (
+                <div className="activity-card" key={activity.id}>
+                  <div className="activity-info">
+                    <FaClipboard className="activity-icon" />
+                    <span className="activity-title">{activity.title}</span>
+                  </div>
 
-            {openSections[label] && (
-              <div className="section-content">
-                {categorized[label]?.length ? (
-                  categorized[label].map((activity) => (
-                    <div
-                      key={activity.id}
-                      className="activity-card"
-                      onClick={() => handleActivityClick(activity)}
+                  {activeTab === "assigned" && (
+                    <button
+                      className="btn upload-btn"
+                      onClick={() => handleUploadClick(activity)}
                     >
-                      <div className="activity-title">{activity.title}</div>
-                      <div className="activity-meta">{activity.className}</div>
-                      {activity.dueDate && (
-                        <div className="due-date">
-                          Due: {new Date(activity.dueDate).toLocaleDateString()}
-                        </div>
-                      )}
-                    </div>
-                  ))
-                ) : (
-                  <div className="empty-text">No activities</div>
-                )}
-              </div>
-            )}
+                      Upload
+                    </button>
+                  )}
+
+                  {activeTab === "missed" && (
+                    <span className="status-badge missed">
+                      <FaExclamationTriangle /> Missing
+                    </span>
+                  )}
+
+                  {activeTab === "done" && (
+                    <span className="status-badge done">
+                      <FaCheck /> Submitted
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>
+
+      {/* Floating Buttons */}
+      <div className="floating-buttons">
+        <button
+          className={`fab done ${activeTab === "done" ? "active" : ""}`}
+          onClick={() => setActiveTab("done")}
+        >
+          <FaCheck /> <span>Done</span>
+        </button>
+
+        <button
+          className={`fab missed ${activeTab === "missed" ? "active" : ""}`}
+          onClick={() => setActiveTab("missed")}
+        >
+          <FaExclamationTriangle /> <span>Missed</span>
+        </button>
+
+        <button
+          className={`fab assigned ${activeTab === "assigned" ? "active" : ""}`}
+          onClick={() => setActiveTab("assigned")}
+        >
+          <FaClipboard /> <span>Assigned</span>
+        </button>
+      </div>
+
+      {/* Activity Modal */}
+      {selectedActivity && (
+        <ActivityView activity={selectedActivity} onClose={handleCloseView} />
+      )}
     </div>
   );
 };

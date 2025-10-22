@@ -22,7 +22,6 @@ const Signup: React.FC = () => {
     <div className="auth-container">
       {/* Left Side */}
       <div className="auth-left">
-        <h1>UPang Learning Management System</h1>
         <div className="mt-12 auth-left-content">
           <h2>Welcome, Student!</h2>
           <p>
@@ -34,7 +33,8 @@ const Signup: React.FC = () => {
 
       {/* Right Side */}
       <div className="auth-right">
-  <img src="/src/assets/phinmalogo.png" alt="Logo" />
+  <img src="/src/assets/phinmalogo.png" alt="Logo" style={{ width: "150px", height: "150px"}} />
+  <h1>UPang Learning Management System</h1>
 
   {/* Sign In Text */}
   <h2 className="auth-title">Sign Up</h2>

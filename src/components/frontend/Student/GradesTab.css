@@ -1,0 +1,122 @@
+.grades-tab {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  border-radius: 12px;
+  box-sizing: border-box;
+}
+
+.grades-list {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.grades-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff; /* list item background */
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.grades-item:hover {
+  background: #f1f5f9;
+  transform: translateY(-2px);
+}
+
+.grades-icon {
+  margin-right: 10px;
+  color: #4CAF50;
+  font-size: 18px;
+}
+
+.grades-score {
+  font-weight: 600;
+  color: #2e7d32;
+}
+
+.grades-empty-msg {
+  font-style: italic;
+  color: #666;
+  text-align: center;
+}
+
+.grades-back-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.grades-back-btn:hover {
+  background: #256428;
+}
+
+.grades-item-detail {
+  background: #fff;
+  padding: 12px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-top: 10px;
+}
+
+@media (max-width: 768px) {
+  .grades-tab {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .grades-list {
+    max-width: 90%;
+    gap: 0.8rem;
+  }
+
+  .grades-item {
+    padding: 9px 12px;
+    font-size: 13.5px;
+  }
+
+  .grades-icon {
+    font-size: 15px;
+    margin-right: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grades-tab {
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: none;
+  }
+
+  .grades-list {
+    max-width: 100%;
+  }
+
+  .grades-item {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .grades-icon {
+    font-size: 14px;
+    margin-right: 6px;
+  }
+}

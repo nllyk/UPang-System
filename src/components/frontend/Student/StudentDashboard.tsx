@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from "react";
 import {
-  FaUserCircle,
   FaBars,
   FaHome,
   FaClipboardList,
-  FaChartBar,
   FaBell,
   FaCog,
   FaSignOutAlt,
 } from "react-icons/fa";
 import "./StudentDashboard.css";
-import ClassCard from "./ClassCard";
 import ClassDetails from "./ClassDetails";
 import ClassesPage from "./ClassesPage";
 import ActivityView from "./ActivityView";
-import Grades from "./Grades";
+import LessonView from "./LessonView";
 import Notifications from "./Notifications";
 import Settings from "./StudentSettings";
 import Logout from "./Logout";
 
-const Dashboard: React.FC = () => {
+const StudentDashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedClass, setSelectedClass] = useState<any>(null);
   const [activePage, setActivePage] = useState("home");
+  const [selectedClass, setSelectedClass] = useState<any>(null);
+  const [selectedLesson, setSelectedLesson] = useState<any>(null);
   const [selectedActivity, setSelectedActivity] = useState<any>(null);
 
   const classes = [
@@ -32,6 +30,15 @@ const Dashboard: React.FC = () => {
       professor: "Grace Carpizo",
       color: "green",
       activities: ["Activity 1", "Activity 2"],
+      lessons: [
+        {
+          id: 1,
+          title: "Lesson 1: Basic Sketching",
+          desc: "Introduction to freehand drawing basics.",
+          instructor: "Grace Carpizo",
+          file: "https://example.com/lesson1.pdf",
+        },
+      ],
     },
     {
       id: 2,
@@ -39,30 +46,16 @@ const Dashboard: React.FC = () => {
       professor: "Angelica Vidal",
       color: "blue",
       activities: ["Project Proposal"],
-    },
-    {
-      id: 3,
-      subject: "ITE 353",
-      professor: "Veronica Canlas",
-      color: "orange",
-      activities: [],
-    },
-    {
-      id: 4,
-      subject: "ITE 359",
-      professor: "Josephine Cruz",
-      color: "red",
-      activities: ["Milestone 1"],
+      lessons: [],
     },
   ];
 
-  const handleMenuToggle = () => {
-    setIsSidebarOpen((prev) => !prev);
-  };
+  const handleMenuToggle = () => setIsSidebarOpen(!isSidebarOpen);
 
   const handleTabClick = (tabName: string) => {
     setActivePage(tabName);
     setSelectedClass(null);
+    setSelectedLesson(null);
     setSelectedActivity(null);
   };
 
@@ -74,17 +67,27 @@ const Dashboard: React.FC = () => {
     <div className="student-dashboard">
       {/* Header */}
       <header className="dashboard-header">
-        <button
-          className={`menu-btn ${isSidebarOpen ? "active" : ""}`}
-          onClick={handleMenuToggle}
-        >
-          <FaBars />
-        </button>
-        <img src="/src/assets/phinmalogo.png" alt="Logo" className="logo" />
-        <h1>UPang Learning Management System</h1>
+        <div className="header-left">
+          <button
+            className={`menu-btn ${isSidebarOpen ? "active" : ""}`}
+            onClick={handleMenuToggle}
+          >
+            <FaBars />
+          </button>
+          <img src="/src/assets/phinmalogo.png" alt="Logo" className="logo" />
+          <h1>UPang Learning Management System</h1>
+        </div>
+
+        <div className="header-right">
+          <button
+            className={`notif-btn ${activePage === "notifications" ? "active" : ""}`}
+            onClick={() => handleTabClick("notifications")}
+          >
+            <FaBell />
+          </button>
+        </div>
       </header>
 
-      {/* Body */}
       <div className="dashboard-body">
         {/* Sidebar */}
         <aside className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
@@ -100,20 +103,6 @@ const Dashboard: React.FC = () => {
             onClick={() => handleTabClick("classes")}
           >
             <FaClipboardList /> {isSidebarOpen && <span>Classes</span>}
-          </button>
-
-          <button
-            className={activePage === "grades" ? "active" : ""}
-            onClick={() => handleTabClick("grades")}
-          >
-            <FaChartBar /> {isSidebarOpen && <span>Grades</span>}
-          </button>
-
-          <button
-            className={activePage === "notifications" ? "active" : ""}
-            onClick={() => handleTabClick("notifications")}
-          >
-            <FaBell /> {isSidebarOpen && <span>Notifications</span>}
           </button>
 
           <button
@@ -133,47 +122,61 @@ const Dashboard: React.FC = () => {
 
         {/* Main Content */}
         <main className="main-content">
+          {/* Home Page: Enter Class Layout */}
           {activePage === "home" && !selectedClass && (
-            <>
-              <div className="join-class">
-                <button className="join-btn">Join Class +</button>
-              </div>
-              <div className="class-grid">
-                {classes.map((cls) => (
-                  <ClassCard
-                    key={cls.id}
-                    subject={cls.subject}
-                    professor={cls.professor}
-                    color={cls.color}
-                    activities={cls.activities}
-                    onClick={() => setSelectedClass(cls)}
-                  />
-                ))}
-              </div>
-            </>
+            <div className="student-empty-state">
+              <img
+                src="/src/assets/books.png"
+                alt="Books"
+                className="illustration"
+              />
+              <p className="text-lg font-medium">
+                Enter your class to get started
+              </p>
+              <button
+                className="enter-class-btn"
+                onClick={() => setSelectedClass(classes[0])} // enter first class
+              >
+                Enter Class
+              </button>
+            </div>
           )}
 
-          {selectedClass && (
+          {/* Class Details */}
+          {activePage === "home" && selectedClass && (
             <ClassDetails
               selectedClass={selectedClass}
               onBack={() => setSelectedClass(null)}
-              onSelectClass={(c) => setSelectedClass(c)}
+              onOpenLesson={(lesson) => setSelectedLesson(lesson)}
+              onOpenActivity={(activity) => setSelectedActivity(activity)}
             />
           )}
 
-          {activePage === "classes" && !selectedActivity && (
-            <ClassesPage
-              onSelectActivity={(activity) => setSelectedActivity(activity)}
+          {/* Lesson View */}
+          {selectedLesson && (
+            <LessonView
+              lessonTitle={selectedLesson.title}
+              lessonDesc={selectedLesson.desc}
+              lessonFile={selectedLesson.file}
+              instructor={selectedLesson.instructor}
+              onClose={() => setSelectedLesson(null)}
             />
           )}
 
-          {activePage === "classes" && selectedActivity && (
+          {/* Activity View */}
+          {selectedActivity && (
             <ActivityView
-              activityTitle={selectedActivity.title}
-              onMarkDone={() => setSelectedActivity(null)}
+              activity={selectedActivity}
+              onClose={() => setSelectedActivity(null)}
+              onSubmit={() => alert("File submitted successfully!")}
             />
           )}
-          {activePage === "grades" && <Grades subject={classes} />}
+
+          {/* Classes Page */}
+          {activePage === "classes" && (
+            <ClassesPage onSelectActivity={(a) => setSelectedActivity(a)} />
+          )}
+
           {activePage === "notifications" && <Notifications />}
           {activePage === "settings" && <Settings />}
           {activePage === "logout" && <Logout />}
@@ -183,4 +186,4 @@ const Dashboard: React.FC = () => {
   );
 };
 
-export default Dashboard;
+export default StudentDashboard;

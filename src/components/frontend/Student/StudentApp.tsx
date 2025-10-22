@@ -7,7 +7,7 @@ import ForgotPass from "./ForgotPass";
 import VerifyCode from "./VerifyCode";
 import ResetPass from "./ResetPass";
 import Dashboard from "./StudentDashboard";
-import Grades from "./Grades";
+import Grades from "./GradesTab";
 import Settings from "./StudentSettings";
 
 const StudentApp: React.FC = () => {

@@ -1,100 +1,207 @@
-.classes-page {
-  background-color: #f4f6f5;
-  min-height: 100vh;
+/* Main container */
+.classes-container {
   padding: 1.5rem;
-  font-family: "Poppins", sans-serif;
-}
-
-/* Tabs */
-.tabs {
   display: flex;
-  justify-content: center;
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 1.5rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.tab {
-  background: none;
-  border: none;
-  padding: 0.7rem 1.5rem;
-  cursor: pointer;
-  font-weight: 500;
-  color: #555;
-  font-size: 1rem;
+/* Header */
+.classes-header {
+  background: #4d9850;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  color: white;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.tab.active {
-  border-bottom: 3px solid #5d9b63;
-  color: #2d6a2d;
-  font-weight: 600;
-}
-
-.tasks-container {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-h1 {
-  text-align: center;
+.classes-header h2 {
   font-size: 1.6rem;
   font-weight: 600;
-  color: #222;
-  margin-bottom: 1.5rem;
+  margin: 0 0 0.3rem 0;
 }
 
-/* Section styles */
-.classes-section {
-  border-bottom: 1px solid #ccc;
-  padding: 0.6rem 0;
+.classes-header p {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
 }
 
-.section-header {
+/* Subject sections */
+.classes-list {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-weight: 600;
-  color: #333;
-  cursor: pointer;
-  padding: 0.6rem 0;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.section-content {
-  padding-left: 1rem;
-  margin-top: 0.5rem;
+.subject-section {
+  background: #f9fafb;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.subject-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.subject-icon {
+  color: #4d9850;
+}
+
+/* Activity cards */
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
 }
 
 .activity-card {
-  background: #fff;
-  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 1rem 1.5rem;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  transition: transform 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.activity-card:hover {
-  transform: scale(1.01);
-  background: #f7fff7;
+.activity-info {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.activity-icon {
+  font-size: 1.3rem;
+  color: #444;
 }
 
 .activity-title {
-  font-weight: 600;
-  color: #2b6b2b;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.activity-meta {
-  color: #666;
+/* Buttons */
+.btn.upload-btn {
+  background: #22c55e;
+  color: white;
+  padding: 0.4rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.btn.upload-btn:hover {
+  background: #15803d;
+}
+
+/* Status badges */
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-weight: 500;
   font-size: 0.9rem;
 }
 
-.due-date {
-  color: #999;
-  font-size: 0.8rem;
+.status-badge.missed {
+  background: #fee2e2;
+  color: #b91c1c;
 }
 
-.empty-text {
-  font-style: italic;
-  color: #888;
-  padding: 0.5rem;
+.status-badge.done {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+/* Floating buttons */
+.floating-buttons {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.8rem;
+  align-items: flex-end;
+}
+
+.fab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: #1f2937;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  min-width: 120px;
+}
+
+.fab span {
+  margin-top: 2px;
+}
+
+.fab.assigned {
+  background: #22c55e;
+}
+
+.fab.missed {
+  background: #e11d48;
+}
+
+.fab.done {
+  background: #16a34a;
+}
+
+
+.fab.active {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .activity-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .floating-buttons {
+    bottom: 1rem;
+    right: 1rem;
+    gap: 0.6rem;
+  }
+
+  .fab {
+    min-width: 100px;
+    font-size: 0.85rem;
+  }
 }

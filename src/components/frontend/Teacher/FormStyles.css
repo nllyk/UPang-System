@@ -59,6 +59,26 @@
 .form-body textarea {
   min-height: 80px;
 }
+.uploaded-files {
+  background: #f8f8f8;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.uploaded-files ul {
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.uploaded-files li {
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
 
 .form-footer {
   display: flex;

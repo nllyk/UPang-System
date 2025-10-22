@@ -1,18 +1,23 @@
 // src/components/frontend/Admin/AdminApp.tsx
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AdminDashboard from "./AdminDashboard";
-import CreateClassForm from "./CreateClassForm";
-import ClassName from "./ClassName";
-
+import UsersPage from "./UserPage";
+import SubjectContent from "./SubjectContent";
+import ReportsPage from "./ReportPage";
+import LogoutPage from "./LogoutPage";
 
 const AdminApp: React.FC = () => {
   return (
     <Routes>
-      <Route path="/admin/dashboard" element={<AdminDashboard />} />
-      <Route path="/admin/createclassform" element={<CreateClassForm />} />
-      <Route path="classname" element={<ClassName />}/>
-
+      <Route path="/admin" element={<AdminDashboard />}>
+        <Route index element={<Navigate to="/admin/dashboard" replace />} />
+        <Route path="dashboard" element={<div />} /> {/* Dashboard handled inside AdminDashboard */}
+        <Route path="users" element={<UsersPage />} />
+        <Route path="subjects" element={<SubjectContent />} />
+        <Route path="reports" element={<ReportsPage />} />
+        <Route path="logout" element={<LogoutPage />} />
+      </Route>
     </Routes>
   );
 };

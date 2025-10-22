@@ -22,27 +22,35 @@ const CreateAssignment: React.FC<Props> = ({ onBack, onPost, classId }) => {
       createdAt: new Date().toISOString(),
     };
 
-    // Save to localStorage
-    const saved = localStorage.getItem(`posts_${classId}`);
-    const updated = saved ? [newPost, ...JSON.parse(saved)] : [newPost];
-    localStorage.setItem(`posts_${classId}`, JSON.stringify(updated));
+    // ✅ Update classes array
+    const classes = JSON.parse(localStorage.getItem("classes") || "[]");
+    const updated = classes.map((cls: any) =>
+      cls._id === classId
+        ? { ...cls, activities: [newPost, ...(cls.activities || [])] }
+        : cls
+    );
+    localStorage.setItem("classes", JSON.stringify(updated));
 
     onPost(newPost);
+    onBack(); // ✅ Close form automatically
   };
 
   return (
     <div className="form-card">
-      <button className="close-btn-top" onClick={onBack}>✖</button>
-      <div className="form-header"><h3>📝 Assignment</h3></div>
+      <div className="form-header"><h3>📝 Create Assignment</h3></div>
       <form className="form-body" onSubmit={handleSubmit}>
         <label>Title:</label>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} required />
+
         <label>Instructions (optional):</label>
         <textarea value={instructions} onChange={(e) => setInstructions(e.target.value)} />
+
         <label>Due Date:</label>
         <input type="datetime-local" value={dueDate} onChange={(e) => setDueDate(e.target.value)} />
+
         <div className="form-footer">
           <button type="submit" className="post-btn">Post</button>
+          <button type="button" className="cancel-btn" onClick={onBack}>Cancel</button>
         </div>
       </form>
     </div>

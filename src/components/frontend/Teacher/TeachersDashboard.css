@@ -1,0 +1,368 @@
+.teachers-dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* =========================
+   HEADER
+   ========================= */
+.teachers-dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items:center;
+  height: 50px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0 15px;
+}
+
+.teachers-dashboard-header .menu-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1.5rem;
+  margin-right: 15px;
+  cursor: pointer;
+  transform: 0.3s ease;
+}
+.teachers-dashboard-header .menu-btn.active {
+  background-color: #1a8f3c;
+  color: white;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+.teachers-dashboard-header .menu-btn:hover {
+  background-color: #1a8f3c;
+  color: #fff;
+}
+
+.teachers-dashboard-header .logo {
+  height: 40px;
+  margin: auto;
+}
+
+.teachers-dashboard-header h1 {
+  flex: 1; /* Pushes user icon to far right */
+  margin-left: 5px ;
+  margin: 0;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+  color: white;
+}
+
+.header-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+/* =========================
+   BODY
+   ========================= */
+.teachers-dashboard-body {
+  display: flex;
+  flex: 1;
+}
+
+/* =========================
+   SIDEBAR
+   ========================= */
+.teachers-sidebar {
+  width: 100%;
+  background-color: #eee;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s ease;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.teachers-sidebar.collapsed {
+  width: 60px; /* Only icons */
+  align-items: center;
+}
+.teachers-sidebar.open {
+  width: 250px; /* Icons + Labels */
+  padding-left: 20px;
+}
+
+.teachers-sidebar button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background: none;
+  border: none;
+  font-size: 25px;
+  margin: 15px 0;
+  cursor: pointer;
+  gap: 10px;
+  width: 100%;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+  transform: all 0.3s ease;
+}
+.teachers-sidebar button:hover {
+  color: white;
+  background: #1a8f3c;
+}
+
+.teachers-sidebar button.active {
+  background-color: #1a8f3c;
+  color: white;
+  font-weight: bold;
+  border-left: 4px solid #fff;
+  transition: 0.3s ease;
+}
+
+/* =========================
+   CREATE CLASS CONTAINER
+   ========================= */
+.create-class-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto; /* centers horizontally */
+  height: auto;
+}
+
+.create-class-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.create-class-form input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  outline: none;
+  font-size: 16px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.cancel-btn {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.create-btn {
+  background-color: #5c8a3b;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+.teachers-main-content {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center; /* Centers vertically */
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+}
+
+.teachers-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.teachers .illustration {
+  width: 180px;
+  margin-bottom: 20px;
+}
+
+.text-lg {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   CLASS CARD STYLES
+   ========================= */
+.teachers-dashboard .class-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 250px);
+  justify-content: flex-start;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 30px;
+  gap: 20px;
+}
+
+/* Class Card Container */
+.teachers-dashboard .teachers-class-card {
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background: rgb(243, 243, 243);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.teachers-dashboard .teachers-class-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.teachers-dashboard .card-header {
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 5px;
+  padding: 12px;
+  color: white;
+  cursor: pointer;
+}
+
+.teachers-dashboard .card-icon {
+  font-size: 60px;
+  margin-right: 10px;
+}
+
+.teachers-dashboard .class-info h3 {
+  margin: 0 1rem;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.teachers-dashboard .class-info p {
+  margin: 0 1rem;
+  font-size: 15px;
+  color: #ebebeb;
+}
+
+/* Body */
+.teachers-dashboard .card-body {
+  padding: 12px;
+  font-size: 14px;
+}
+
+.teachers-dashboard .card-body ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+.teachers-dashboard .empty-msg {
+  padding: 8px;
+  color: gray;
+  font-style: italic;
+}
+
+/* Footer */
+.admin-dashboard .card-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.teachers-dashboard .delete-icon {
+  font-size: 16px;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.teachers-dashboard .delete-icon:hover {
+  color: red;
+}
+
+/* Color Headers */
+.admin-dashboard .green .card-header {
+  background-color: #4CAF50;
+  color: white;
+}
+.teachers-dashboard .blue .card-header {
+  background-color: #2196F3;
+  color: white;
+}
+.teachers-dashboard .orange .card-header {
+  background-color: #FF9800;
+  color: white;
+}
+.teachers-dashboard .red .card-header {
+  background-color: #F44336;
+  color: white;
+}
+
+/* Top Border Colors */
+.teachers-dashboard .green {
+  border-top: 5px solid #016f05;
+}
+.teachers-dashboard .blue {
+  border-top: 5px solid #003e71;
+}
+.teachers-dashboard .orange {
+  border-top: 5px solid #915804;
+}
+.teachers-dashboard .red {
+  border-top: 5px solid #780e06;
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 1200px) {
+  .teachers-dashboard .class-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .teachers-dashboard .class-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+  }
+
+  .teachers-dashboard .card-icon {
+    font-size: 45px;
+  }
+
+  .teachers-dashboard .class-info h3 {
+    font-size: 18px;
+  }
+
+  .teachers-dashboard .class-info p {
+    font-size: 14px;
+  }
+}

@@ -1,189 +1,139 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  FaUserCircle,
   FaBars,
-  FaHome,
-  FaClipboardList,
-  FaCog,
+  FaUser,
+  FaUsers,
+  FaBook,
+  FaChartBar,
   FaSignOutAlt,
-  FaArchive,
+  FaTachometerAlt,
+  FaChalkboardTeacher,
+  FaGraduationCap,
 } from "react-icons/fa";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
-import CreateClassForm from "./CreateClassForm";
-import ClassName from "./ClassName";
-import Settings from "./AdminSettings";
-import Logout from "./Logout";
-import AdminClassCard from "./AdminClassCard";
-import Archived from "./Archived";
 
 const AdminDashboard: React.FC = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [activePage, setActivePage] = useState("home");
-  const [currentClass, setCurrentClass] = useState<any | null>(null);
-  const [classes, setClasses] = useState<any[]>(() => {
-  const saved = localStorage.getItem("classes");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // persist classes to localStorage
-  useEffect(() => {
-    localStorage.setItem("classes", JSON.stringify(classes));
-  }, [classes]);
-
-  const handleTabClick = (tab: string) => {
-    setActivePage(tab);
-    setCurrentClass(null);
+  const handleNavClick = (path: string) => {
+    navigate(path);
   };
 
-  const handleCreateClass = (classData: any) => {
-    const newClass = {
-      _id: Date.now().toString(),
-      name: classData.subject || "Untitled Class",
-      instructor: classData.professor || "Unknown Instructor",
-      section: classData.section || "No Section",
-      color: classData.color || "green",
-      activities: [],
-    };
-
-    const updated = [...classes, newClass];
-    setClasses(updated);
-    setCurrentClass(newClass);
-    setActivePage("classname");
-  };
-
-  const handleDeleteClass = (index: number) => {
-    if (window.confirm("Delete this class?")) {
-      const updated = [...classes];
-      updated.splice(index, 1);
-      setClasses(updated);
-    }
-  };
-
-  const handleClassUpdate = (identifier: any, snippet: string) => {
-    setClasses((prev) =>
-      prev.map((c) => {
-        if (c._id === identifier._id) {
-          return {
-            ...c,
-            activities: [snippet, ...(c.activities || [])],
-          };
-        }
-        return c;
-      })
-    );
-  };
+  const isDashboardActive =
+    location.pathname === "/admin" ||
+    location.pathname === "/admin/dashboard";
 
   return (
-    <div className="admin-dashboard">
-      {/* Header */}
-      <header className="admin-dashboard-header">
-        <button
-          className={`menu-btn ${isSidebarOpen ? "active" : ""}`}
-          onClick={() => setIsSidebarOpen((prev) => !prev)}
-        >
-          <FaBars />
-        </button>
-        <img src="/src/assets/phinmalogo.png" alt="Logo" className="logo" />
-        <h1>UPang Learning Management System</h1>
+    <div className={`admin-shell ${isSidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
+      {/* HEADER */}
+      <header className="admin-header">
+        <div className="header-left">
+          <button
+            className="burger-btn"
+            onClick={() => setIsSidebarOpen((prev) => !prev)}
+            aria-label="Toggle sidebar"
+          >
+            <FaBars />
+          </button>
+
+          <img
+            src="/src/assets/phinmalogo.png"
+            alt="Phinma Logo"
+            className="header-logo"
+          />
+          <h1 className="header-title">UpangLearn Admin</h1>
+        </div>
+
         <div className="header-right">
-          <FaUserCircle className="profile-icon" />
+          <FaUser className="profile-icon" />
         </div>
       </header>
 
-      <div className="admin-dashboard-body">
-        {/* Sidebar */}
-        <aside className={`admin-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
+      {/* SIDEBAR */}
+      <aside className={`admin-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
+        <nav className="sidebar-nav">
           <button
-            className={activePage === "home" ? "active" : ""}
-            onClick={() => handleTabClick("home")}
+            className={`nav-btn ${isDashboardActive ? "active" : ""}`}
+            onClick={() => handleNavClick("/admin/dashboard")}
           >
-            <FaHome /> {isSidebarOpen && <span>Home</span>}
+            <FaTachometerAlt className="nav-icon" />
+            {isSidebarOpen && <span className="nav-label">Dashboard</span>}
           </button>
 
           <button
-            className={activePage === "classes" ? "active" : ""}
-            onClick={() => handleTabClick("classes")}
+            className={`nav-btn ${location.pathname === "/admin/users" ? "active" : ""}`}
+            onClick={() => handleNavClick("/admin/users")}
           >
-            <FaClipboardList /> {isSidebarOpen && <span>Classes</span>}
+            <FaUsers className="nav-icon" />
+            {isSidebarOpen && <span className="nav-label">Users</span>}
           </button>
 
           <button
-            className={activePage === "settings" ? "active" : ""}
-            onClick={() => handleTabClick("settings")}
+            className={`nav-btn ${location.pathname === "/admin/subjects" ? "active" : ""}`}
+            onClick={() => handleNavClick("/admin/subjects")}
           >
-            <FaCog /> {isSidebarOpen && <span>Settings</span>}
+            <FaBook className="nav-icon" />
+            {isSidebarOpen && <span className="nav-label">Subject Content</span>}
           </button>
 
           <button
-            className={activePage === "archived" ? "active" : ""}
-            onClick={() => handleTabClick("archived")}
+            className={`nav-btn ${location.pathname === "/admin/reports" ? "active" : ""}`}
+            onClick={() => handleNavClick("/admin/reports")}
           >
-            <FaArchive /> {isSidebarOpen && <span>Archived</span>}
+            <FaChartBar className="nav-icon" />
+            {isSidebarOpen && <span className="nav-label">Reports</span>}
           </button>
 
           <button
-            className={activePage === "logout" ? "active" : ""}
-            onClick={() => handleTabClick("logout")}
+            className={`nav-btn logout ${location.pathname === "/admin/logout" ? "active" : ""}`}
+            onClick={() => handleNavClick("/admin/logout")}
           >
-            <FaSignOutAlt /> {isSidebarOpen && <span>Logout</span>}
+            <FaSignOutAlt className="nav-icon" />
+            {isSidebarOpen && <span className="nav-label">Logout</span>}
           </button>
-        </aside>
+        </nav>
+      </aside>
 
-        {/* Main content */}
-        <main className="admin-main-content">
-          {activePage === "home" && !currentClass && (
-            <div className="admin-empty-state">
-              <img src="/src/assets/books.png" alt="books" className="illustration" />
-              <p className="text-lg font-medium">Add a class to get started</p>
-              <button
-                className="create-btn"
-                onClick={() => setActivePage("create")}
-              >
-                Create Class +
-              </button>
-            </div>
-          )}
+      {/* MAIN CONTENT */}
+      <main className="admin-main">
+        {isDashboardActive ? (
+          <div className="dashboard-content">
+            <h2 className="page-title">Dashboard</h2>
 
-          {activePage === "create" && (
-            <CreateClassForm onCreateClass={handleCreateClass} />
-          )}
+            <div className="dashboard-grid">
+              <div className="card stat-card">
+                <FaChalkboardTeacher className="stat-icon" />
+                <div>
+                  <h3>15</h3>
+                  <p>Total Teachers</p>
+                </div>
+              </div>
 
-          {activePage === "classes" && !currentClass && (
-            <div className="classes-page">
-              <h2>Your Classes</h2>
-              <div className="classes-grid">
-                {classes.length === 0 && <p>No classes yet.</p>}
-                {classes.map((cls, idx) => (
-                  <AdminClassCard
-                    key={cls._id}
-                    subject={cls.name}
-                    professor={cls.instructor}
-                    color={cls.color}
-                    activities={cls.activities}
-                    onClick={() => {
-                      setCurrentClass(cls);
-                      setActivePage("classname");
-                    }}
-                    onDelete={() => handleDeleteClass(idx)}
-                  />
-                ))}
+              <div className="card stat-card">
+                <FaGraduationCap className="stat-icon" />
+                <div>
+                  <h3>257</h3>
+                  <p>Total Students</p>
+                </div>
+              </div>
+
+              <div className="card chart-card">
+                <h3>Total Breakdown</h3>
+                <img
+                  src="/src/assets/chart.png"
+                  alt="Chart"
+                  className="chart-placeholder"
+                />
               </div>
             </div>
-          )}
-
-          {activePage === "classname" && currentClass && (
-            <ClassName
-              classInfo={currentClass}
-              onNavigateColor={() => {}}
-              onClassUpdate={handleClassUpdate}
-            />
-          )}
-
-          {activePage === "settings" && <Settings />}
-          {activePage === "archived" && <Archived />}
-          {activePage === "logout" && <Logout />}
-        </main>
-      </div>
+          </div>
+        ) : (
+          <Outlet />
+        )}
+      </main>
     </div>
   );
 };

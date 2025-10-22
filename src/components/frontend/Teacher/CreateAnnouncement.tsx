@@ -18,21 +18,32 @@ const CreateAnnouncement: React.FC<Props> = ({ onBack, onPost, classId }) => {
       createdAt: new Date().toISOString(),
     };
 
-    const saved = localStorage.getItem(`posts_${classId}`);
-    const updated = saved ? [newPost, ...JSON.parse(saved)] : [newPost];
-    localStorage.setItem(`posts_${classId}`, JSON.stringify(updated));
+    // ✅ Update classes array in localStorage
+    const classes = JSON.parse(localStorage.getItem("classes") || "[]");
+    const updated = classes.map((cls: any) =>
+      cls._id === classId
+        ? { ...cls, activities: [newPost, ...(cls.activities || [])] }
+        : cls
+    );
+    localStorage.setItem("classes", JSON.stringify(updated));
 
     onPost(newPost);
+    onBack(); // ✅ Close form automatically
   };
 
   return (
     <div className="form-card">
-      <button className="close-btn-top" onClick={onBack}>✖</button>
-      <div className="form-header"><h3>💬 Announcement</h3></div>
+      <div className="form-header"><h3>💬 Create Announcement</h3></div>
       <form className="form-body" onSubmit={handleSubmit}>
-        <textarea placeholder="Share your thoughts..." value={content} onChange={(e) => setContent(e.target.value)} required />
+        <textarea
+          placeholder="Share an update or announcement..."
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+          required
+        />
         <div className="form-footer">
           <button type="submit" className="post-btn">Post</button>
+          <button type="button" className="cancel-btn" onClick={onBack}>Cancel</button>
         </div>
       </form>
     </div>
