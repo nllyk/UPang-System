@@ -8,7 +8,7 @@
 }
 
 .class-details-header {
-  background: #4d9850;
+  background: linear-gradient(90deg, #08581f 0%, #07750c 100%); /* peach */
   padding: 1rem 1.5rem;
   border-radius: 8px;
   font-weight: 600;
@@ -23,12 +23,14 @@
   padding: 20px;
   overflow-y: auto;
 }
+
 .tab-label {
   font-size: 1.2rem;
   font-weight: 600;
   color: #4c9a2a;
   margin-bottom: 1rem;
 }
+
 .empty-msg {
   text-align: center;
   color: #666;
@@ -39,12 +41,14 @@
 /* Common list styles */
 .lesson-list,
 .activity-list,
-.announcement-list {
+.announcement-list,
+.grades-list {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
+/* Default card styling */
 .lesson-card,
 .activity-card,
 .announcement-card {
@@ -66,6 +70,7 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
+/* Icons */
 .lesson-icon,
 .activity-icon,
 .announcement-icon {
@@ -73,30 +78,53 @@
   font-size: 1.2rem;
 }
 
-/* Announcement details */
-.announcement-details {
-  background: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+/* ✅ Announcement Card Alignment */
+.announcement-card {
+  justify-content: space-between;
+  width: auto;
 }
 
-.back-button {
-  background: none;
-  border: none;
-  color: #4c9a2a;
+.announcement-info {
+  flex-direction: column;
+  align-items: center;
+}
+
+.announcement-title {
+  margin-right: 29rem;
   font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 15px;
 }
 
 .announcement-date {
   color: #666;
-  font-size: 0.9rem;
-  margin-bottom: 10px;
+  font-size: 0.82rem;
+  margin-top: 2px;
+}
+.announcement-back-btn {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
-/* Floating Buttons */
+.announcement-back-btn:hover {
+  background: #256428;
+}
+
+/* ✅ Grade List Alignment */
+.grades-list .lesson-card {
+  width: 139%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Floating Buttons — Match Teacher Style */
 .fab-container {
   position: fixed;
   bottom: 25px;
@@ -104,45 +132,61 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  z-index: 2000;
 }
 
 .fab-main {
-  background: #4c9a2a;
+  background: linear-gradient(90deg, #08581f 0%, #07750c 100%); /* peach */
   border: none;
   border-radius: 50%;
   color: #fff;
-  padding: 15px;
+  padding: 18px;
   font-size: 20px;
   cursor: pointer;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-  transition: background 0.2s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease;
 }
 
 .fab-main:hover {
-  background: #3d7c21;
+  transform: scale(1.05);
 }
 
 .fab-options {
   display: flex;
   flex-direction: column;
+  gap: 12px;
   margin-bottom: 10px;
-  gap: 10px;
 }
 
 .fab-option {
+  display: flex;
+  align-items: center;
   background: #fff;
-  border: 2px solid #4c9a2a;
-  color: #4c9a2a;
-  border-radius: 50%;
-  padding: 10px;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 50px;
+  gap: 10px;
+  background: linear-gradient(90deg, #18ff59 0%, #009407 100%); /* peach */
+  font-weight: 600;
   cursor: pointer;
+  min-width: 150px;
+  justify-content: flex-start;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
   transition: all 0.2s ease;
 }
 
-.fab-option.active,
-.fab-option:hover {
-  background: #4c9a2a;
+.fab-option svg {
+  font-size: 1.1rem;
+}
+
+.fab-option:hover,
+.fab-option.active {
+  background: linear-gradient(90deg, #1aaa43 0%, #014a05 100%); /* peach */
   color: #fff;
+}
+
+.fab-label {
+  font-size: 0.85rem;
 }
 
 /* Responsive */
@@ -150,7 +194,7 @@
   .class-details-main {
     padding: 15px;
   }
-
+  
   .lesson-card,
   .activity-card,
   .announcement-card {

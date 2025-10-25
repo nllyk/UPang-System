@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaSearch, FaTrash, FaEllipsisV } from "react-icons/fa";
 import "./ReportPage.css";
 
@@ -21,6 +21,8 @@ const ReportPage: React.FC = () => {
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState<number | null>(null);
 
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
+
   const handleDeleteAll = () => {
     setReports([]);
   };
@@ -34,9 +36,23 @@ const ReportPage: React.FC = () => {
       filter === "All" ||
       (filter === "Teacher" && report.activity.includes("Project")) ||
       (filter === "Student" && report.activity.includes("Quiz"));
+
     const matchesSearch = report.student.toLowerCase().includes(search.toLowerCase());
+
     return matchesFilter && matchesSearch;
   });
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setMenuOpen(null);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <div className="report-page">
@@ -44,7 +60,6 @@ const ReportPage: React.FC = () => {
 
       <div className="report-card">
         <div className="report-controls">
-          {/* Search */}
           <div className="search-container">
             <FaSearch className="search-icon" />
             <input
@@ -55,15 +70,11 @@ const ReportPage: React.FC = () => {
             />
           </div>
 
-
-
-          {/* Trash Button */}
           <button className="trash-btn" onClick={handleDeleteAll}>
             <FaTrash />
           </button>
         </div>
 
-        {/* Table */}
         <div className="table-container">
           <table className="report-table">
             <thead>
@@ -86,17 +97,18 @@ const ReportPage: React.FC = () => {
                     <td>{item.score}</td>
                     <td>{item.submittedOn}</td>
                     <td className="action-cell">
-                      <div className="dropdown-container">
+                      <div className="dropdown-container" ref={dropdownRef}>
                         <FaEllipsisV
                           className="dots-icon"
                           onClick={() =>
                             setMenuOpen(menuOpen === item.id ? null : item.id)
                           }
                         />
+
                         {menuOpen === item.id && (
                           <div className="action-menu">
                             <button onClick={() => alert("Edit clicked")}>Edit</button>
-                            <button onClick={() => alert("Deactivate clicked")}>View</button>
+                            <button onClick={() => alert("View clicked")}>View</button>
                             <button onClick={() => handleDelete(item.id)}>Delete</button>
                           </div>
                         )}

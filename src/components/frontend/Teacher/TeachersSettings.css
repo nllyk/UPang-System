@@ -31,7 +31,7 @@
 }
 
 .teachers-settings-tabs button.active {
-  background: #28a745;
+  background: linear-gradient(90deg, #08581f 0%, #07750c 100%); /* peach */
   color: white;
 }
 

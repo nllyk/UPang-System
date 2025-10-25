@@ -1,0 +1,140 @@
+.attach-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+
+.attach-modal {
+  position: relative;
+  background: #fff;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+
+/* Header */
+.attach-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.8rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-icon {
+  color: #1e3a8a;
+  font-size: 1.4rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 50rem;
+  z-index: 1500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: rgb(75, 75, 75);
+}
+
+/* Body */
+.attach-body {
+  margin-top: 1.2rem;
+}
+
+.attach-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.submission-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.7rem;
+  font-weight: 600;
+}
+
+.submission-status.turnedin {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.submission-status.missing {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+/* Feedback */
+.feedback-section {
+  margin-top: 1.5rem;
+}
+
+.feedback-section h4 {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.feedback-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.feedback-input {
+  width: 100%;
+  min-height: 60px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  padding: 8px;
+  resize: none;
+}
+
+.feedback-save-btn {
+  align-self: flex-end;
+  padding: 6px 12px;
+  background: #1e40af;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.feedback-save-btn:hover {
+  background: #1e3a8a;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

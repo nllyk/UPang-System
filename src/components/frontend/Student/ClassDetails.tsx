@@ -183,10 +183,10 @@ const ClassDetails: React.FC = () => {
         {selectedAnnouncement && (
           <div className="announcement-details">
             <button
-              className="back-button"
+              className="announcement-back-btn"
               onClick={() => setSelectedAnnouncement(null)}
             >
-              ← Back to Announcements
+              <FaArrowLeft /> Back
             </button>
             <h2>{selectedAnnouncement.title}</h2>
             <p className="announcement-date">{selectedAnnouncement.date}</p>

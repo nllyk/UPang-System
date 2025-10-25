@@ -1,0 +1,130 @@
+.done-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+
+.done-modal {
+  position: relative; /* required for correct absolute positioning */
+  background: #fff;
+  width: 90%;
+  max-width: 650px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  animation: fadeIn 0.25s ease;
+}
+
+
+/* Header */
+.done-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 0.8rem;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.header-icon {
+  color: #1e3a8a;
+  font-size: 1.4rem;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right:50rem;
+  z-index: 1500;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: rgb(75, 75, 75);
+}
+
+
+/* Body */
+.done-body {
+  margin-top: 1.2rem;
+}
+
+.done-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Submitted Info */
+.submitted-box {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: #d1fae5;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  margin-top: 0.7rem;
+}
+
+.submitted-icon {
+  color: #16a34a;
+}
+
+.submitted-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #065f46;
+}
+
+/* Feedback */
+.feedback-section {
+  margin-top: 1.5rem;
+}
+
+.feedback-section h4 {
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.feedback-card {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+.teacher-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.feedback-box {
+  background: white;
+  height: 60px;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

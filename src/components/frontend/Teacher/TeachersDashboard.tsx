@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import {
-  FaUserCircle,
   FaBars,
   FaHome,
   FaClipboardList,
@@ -18,7 +17,6 @@ const TeachersDashboard: React.FC = () => {
   const [activePage, setActivePage] = useState("home");
   const [currentClass, setCurrentClass] = useState<any | null>(null);
 
-  // When grade page is opened, this holds both class + activity
   const [gradeContext, setGradeContext] = useState<{
     classInfo: any;
     activity: any;
@@ -26,34 +24,28 @@ const TeachersDashboard: React.FC = () => {
 
   const [classes, setClasses] = useState<any[]>(() => {
     const saved = localStorage.getItem("classes");
-    if (saved) return JSON.parse(saved);
-    return [
-      {
-        _id: "1",
-        name: "Sample Class",
-        instructor: "Teacher Name",
-        section: "A1",
-        color: "green",
-        activities: [],
-      },
-    ];
+    return saved
+      ? JSON.parse(saved)
+      : [
+          {
+            _id: "1",
+            name: "Sample Class",
+            instructor: "Teacher Name",
+            section: "A1",
+            color: "green",
+            activities: [],
+          },
+        ];
   });
 
   useEffect(() => {
     localStorage.setItem("classes", JSON.stringify(classes));
   }, [classes]);
 
-  // Navigation handlers
   const handleTabClick = (tab: string) => {
     setActivePage(tab);
     setGradeContext(null);
-
-    // Open first class automatically when "classes" tab is clicked
-    if (tab === "classes" && classes.length > 0) {
-      setCurrentClass(classes[0]);
-    } else {
-      setCurrentClass(null);
-    }
+    setCurrentClass(tab === "classes" && classes.length > 0 ? classes[0] : null);
   };
 
   const handleClassUpdate = (identifier: any, snippet: string) => {
@@ -66,100 +58,86 @@ const TeachersDashboard: React.FC = () => {
     );
   };
 
-  // Called when assignment post is opened in class page
   const handleOpenAssignGrade = (activity: any) => {
     if (currentClass) {
       setGradeContext({ classInfo: currentClass, activity });
     }
   };
 
-  // Called when back button pressed inside AssignGrade
-  const handleBackToClass = () => {
-    setGradeContext(null);
-  };
-
   return (
-    <div className="teachers-dashboard">
-      {/* Header */}
-      <header className="teachers-dashboard-header">
-        <button
-          className={`menu-btn ${isSidebarOpen ? "active" : ""}`}
-          onClick={() => setIsSidebarOpen((prev) => !prev)}
-        >
-          <FaBars />
-        </button>
-        <img src="/src/assets/phinmalogo.png" alt="Logo" className="logo" />
-        <h1>UPang Learning Management System</h1>
-        <div className="header-right">
+    <div className="td-root">
+      {/* Full width header */}
+      <header className="td-header">
+        <div className="td-header-left">
+          <button
+            className={`td-menu-btn ${isSidebarOpen ? "active" : ""}`}
+            onClick={() => setIsSidebarOpen((p) => !p)}
+            aria-label="Toggle menu"
+          >
+            <FaBars />
+          </button>
+          <img src="/src/assets/phinmalogo.png" alt="Logo" className="td-logo" />
+          <h1 className="td-title">UPang Learning Management System</h1>
         </div>
       </header>
 
-      <div className="teachers-dashboard-body">
-        {/* Sidebar */}
-        <aside
-          className={`teachers-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}
-        >
-          <button
-            className={activePage === "home" ? "active" : ""}
-            onClick={() => handleTabClick("home")}
-          >
-            <FaHome /> {isSidebarOpen && <span>Home</span>}
-          </button>
+      {/* Below header: sidebar + main */}
+      <div className="td-body">
+        <aside className={`td-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
+          <nav className="td-nav">
+            <button
+              className={`td-nav-btn ${activePage === "home" ? "active" : ""}`}
+              onClick={() => handleTabClick("home")}
+            >
+              <FaHome />
+              {isSidebarOpen && <span>Home</span>}
+            </button>
 
-          <button
-            className={activePage === "classes" ? "active" : ""}
-            onClick={() => handleTabClick("classes")}
-          >
-            <FaClipboardList /> {isSidebarOpen && <span>Classes</span>}
-          </button>
+            <button
+              className={`td-nav-btn ${activePage === "classes" ? "active" : ""}`}
+              onClick={() => handleTabClick("classes")}
+            >
+              <FaClipboardList />
+              {isSidebarOpen && <span>Classes</span>}
+            </button>
 
-          <button
-            className={activePage === "settings" ? "active" : ""}
-            onClick={() => handleTabClick("settings")}
-          >
-            <FaCog /> {isSidebarOpen && <span>Settings</span>}
-          </button>
+            <button
+              className={`td-nav-btn ${activePage === "settings" ? "active" : ""}`}
+              onClick={() => handleTabClick("settings")}
+            >
+              <FaCog />
+              {isSidebarOpen && <span>Settings</span>}
+            </button>
 
-          <button
-            className={activePage === "logout" ? "active" : ""}
-            onClick={() => handleTabClick("logout")}
-          >
-            <FaSignOutAlt /> {isSidebarOpen && <span>Logout</span>}
-          </button>
+            <button
+              className={`td-nav-btn ${activePage === "logout" ? "active" : ""}`}
+              onClick={() => handleTabClick("logout")}
+            >
+              <FaSignOutAlt />
+              {isSidebarOpen && <span>Logout</span>}
+            </button>
+          </nav>
         </aside>
 
-        {/* Main Content */}
-        <main className="teachers-main-content">
-          {/* If AssignGrade is open */}
+        <main className="td-main">
           {gradeContext ? (
             <AssignGrade
               classInfo={gradeContext.classInfo}
               activity={gradeContext.activity}
-              onBack={handleBackToClass}
+              onBack={() => setGradeContext(null)}
             />
           ) : (
             <>
-              {/* HOME PAGE */}
               {activePage === "home" && (
-                <div className="teachers-empty-state">
-                  <img
-                    src="/src/assets/books.png"
-                    alt="books"
-                    className="illustration"
-                  />
-                  <p className="text-lg font-medium">
-                    View your classes to get started
-                  </p>
-                  <button
-                    className="create-btn"
-                    onClick={() => handleTabClick("classes")}
-                  >
-                    Open Classes
+                <div className="td-empty-state">
+                  <img src="/src/assets/books.png" alt="books" className="td-illustration" />
+                  <p className="td-text-lg">View your class to get started</p>
+                  <button className="td-create-btn" onClick={() => handleTabClick("classes")}>
+                    Open Class
                   </button>
                 </div>
               )}
 
-              {/* CLASSES PAGE (directly opens TeachersClassPage) */}
               {activePage === "classes" && currentClass && (
                 <TeachersClassPage
                   classInfo={currentClass}

@@ -14,7 +14,7 @@ import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./AdminDashboard.css";
 
 const AdminDashboard: React.FC = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -22,39 +22,37 @@ const AdminDashboard: React.FC = () => {
     navigate(path);
   };
 
-  const isDashboardActive =
-    location.pathname === "/admin" ||
+  const isDashboardActive = 
+    location.pathname === "/admin" || 
     location.pathname === "/admin/dashboard";
 
   return (
     <div className={`admin-shell ${isSidebarOpen ? "sidebar-open" : "sidebar-collapsed"}`}>
+      
       {/* HEADER */}
       <header className="admin-header">
         <div className="header-left">
           <button
             className="burger-btn"
-            onClick={() => setIsSidebarOpen((prev) => !prev)}
-            aria-label="Toggle sidebar"
+            onClick={() => setIsSidebarOpen(prev => !prev)}
           >
             <FaBars />
           </button>
+              <img 
+          src="/src/assets/phinmalogo.png"
+          alt="PHINMA Logo"
+          className="phinma-logo"
+        />
 
-          <img
-            src="/src/assets/phinmalogo.png"
-            alt="Phinma Logo"
-            className="header-logo"
-          />
           <h1 className="header-title">UpangLearn Admin</h1>
         </div>
 
-        <div className="header-right">
-          <FaUser className="profile-icon" />
-        </div>
       </header>
 
       {/* SIDEBAR */}
       <aside className={`admin-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
         <nav className="sidebar-nav">
+          
           <button
             className={`nav-btn ${isDashboardActive ? "active" : ""}`}
             onClick={() => handleNavClick("/admin/dashboard")}
@@ -88,12 +86,13 @@ const AdminDashboard: React.FC = () => {
           </button>
 
           <button
-            className={`nav-btn logout ${location.pathname === "/admin/logout" ? "active" : ""}`}
+            className="nav-btn logout"
             onClick={() => handleNavClick("/admin/logout")}
           >
             <FaSignOutAlt className="nav-icon" />
             {isSidebarOpen && <span className="nav-label">Logout</span>}
           </button>
+
         </nav>
       </aside>
 
@@ -134,6 +133,7 @@ const AdminDashboard: React.FC = () => {
           <Outlet />
         )}
       </main>
+
     </div>
   );
 };

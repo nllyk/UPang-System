@@ -11,6 +11,7 @@
 }
 
 .activity-modal {
+  position: relative; 
   background: #fff;
   border-radius: 10px;
   padding: 20px;
@@ -50,16 +51,21 @@
 }
 
 .close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
   background: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 22px;
   color: #666;
   cursor: pointer;
   transition: 0.2s;
+  z-index: 1500;
 }
 
 .close-btn:hover {
   color: #111;
+  transform: scale(1.1);
 }
 
 /* Main Body */
@@ -189,6 +195,29 @@
   border-radius: 4px;
   height: 30px;
 }
+.missing-tag {
+  margin-top: 10px;
+  background: #EA2027;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.not-accepting {
+  color: #EA2027;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.status-small {
+  font-size: 13px;
+  margin-top: 2px;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

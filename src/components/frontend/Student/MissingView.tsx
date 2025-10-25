@@ -1,21 +1,22 @@
+// ✅ MissingView.tsx
+
 import React, { useState } from "react";
-import { FaUpload, FaTimes, FaUser, FaClipboard } from "react-icons/fa";
+import { FaUpload, FaTimes, FaClipboard, FaExclamationTriangle } from "react-icons/fa";
 import "./ActivityView.css";
 
 interface Activity {
   id: number;
   title: string;
-  description?: string;
-  subject?: string;
+  dueDate: string;
+  isAcceptingWork: boolean;
 }
 
 interface Props {
   activity: Activity;
   onClose: () => void;
-  onSubmit: (activityId: number) => void;
 }
 
-const ActivityView: React.FC<Props> = ({ activity, onClose, onSubmit }) => {
+const MissingView: React.FC<Props> = ({ activity, onClose }) => {
   const [file, setFile] = useState<File | null>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,47 +26,56 @@ const ActivityView: React.FC<Props> = ({ activity, onClose, onSubmit }) => {
   };
 
   const handleSubmit = () => {
-    if (file) {
-      onSubmit(activity.id);
-      onClose();
-    } else {
-      alert("Please attach a file before submitting.");
-    }
+    if (!activity.isAcceptingWork) return;
+    if (!file) return alert("Please attach a file.");
+
+    alert("Submitted! ✅");
+    onClose();
   };
 
   return (
     <div className="activity-modal-overlay">
       <div className="activity-modal">
-        {/* Header */}
         <div className="activity-header">
           <div className="header-left">
             <FaClipboard className="header-icon" />
-            <h2>{activity.subject || "ITE 391 Freehand Drawing"}</h2>
+            <h2>{activity.title}</h2>
           </div>
-      
+
+ 
         </div>
 
-        {/* Content with Upload on Right */}
+        {/* ✅ Missing Tag */}
+        <div className="missing-tag">
+          <FaExclamationTriangle /> Missing — Due: {activity.dueDate}
+        </div>
+
         <div className="activity-body">
           <div className="activity-left">
-            <h3 className="activity-title">{activity.title}</h3>
-            <p className="activity-desc">
-              {activity.description || "P1 Modules 1 - 7"}
-            </p>
+            <p>Your activity was not submitted on time.</p>
+
+            {!activity.isAcceptingWork && (
+              <p className="not-accepting">
+                Teacher is not accepting late submissions ❌
+              </p>
+            )}
           </div>
 
           <div className="activity-right">
             <h4>Upload</h4>
+
             <div className="upload-box">
-              <label htmlFor="file-upload" className="upload-placeholder">
+              <label htmlFor="missing-upload" className="upload-placeholder">
                 <FaUpload size={20} />
                 <span>{file ? file.name : "Click to attach file"}</span>
               </label>
+
               <input
-                id="file-upload"
+                id="missing-upload"
                 type="file"
                 onChange={handleFileChange}
                 style={{ display: "none" }}
+                disabled={!activity.isAcceptingWork}
               />
             </div>
 
@@ -73,21 +83,14 @@ const ActivityView: React.FC<Props> = ({ activity, onClose, onSubmit }) => {
               <button className="cancel-btn" onClick={onClose}>
                 Cancel
               </button>
-              <button className="submit-btn" onClick={handleSubmit}>
+              <button
+                className="submit-btn"
+                disabled={!activity.isAcceptingWork}
+                onClick={handleSubmit}
+              >
                 Submit
               </button>
             </div>
-          </div>
-        </div>
-
-        {/* Teacher's Feedback */}
-        <div className="feedback-section">
-          <h4>
-            <FaUser className="feedback-icon" /> Teacher's Feedback
-          </h4>
-          <div className="feedback-card">
-            <p className="teacher-name">Grace Carpizo</p>
-            <div className="feedback-box"></div>
           </div>
         </div>
       </div>
@@ -95,4 +98,4 @@ const ActivityView: React.FC<Props> = ({ activity, onClose, onSubmit }) => {
   );
 };
 
-export default ActivityView;
+export default MissingView;

@@ -64,79 +64,77 @@ const StudentDashboard: React.FC = () => {
   }, []);
 
   return (
-    <div className="student-dashboard">
-      {/* Header */}
-      <header className="dashboard-header">
-        <div className="header-left">
+    <div className="sd-root">
+      {/* Full width header */}
+      <header className="sd-header">
+        <div className="sd-header-left">
           <button
-            className={`menu-btn ${isSidebarOpen ? "active" : ""}`}
+            className={`sd-menu-btn ${isSidebarOpen ? "active" : ""}`}
             onClick={handleMenuToggle}
+            aria-label="Toggle menu"
           >
             <FaBars />
           </button>
-          <img src="/src/assets/phinmalogo.png" alt="Logo" className="logo" />
-          <h1>UPang Learning Management System</h1>
+          <img src="/src/assets/phinmalogo.png" alt="Logo" className="sd-logo" />
+          <h1 className="sd-title">UPang Learning Management System</h1>
         </div>
 
-        <div className="header-right">
+        <div className="sd-header-right">
           <button
-            className={`notif-btn ${activePage === "notifications" ? "active" : ""}`}
+            className={`sd-notif-btn ${activePage === "notifications" ? "active" : ""}`}
             onClick={() => handleTabClick("notifications")}
+            aria-label="Notifications"
           >
             <FaBell />
           </button>
         </div>
       </header>
 
-      <div className="dashboard-body">
-        {/* Sidebar */}
-        <aside className={`sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
-          <button
-            className={activePage === "home" ? "active" : ""}
-            onClick={() => handleTabClick("home")}
-          >
-            <FaHome /> {isSidebarOpen && <span>Home</span>}
-          </button>
+      {/* Below header: sidebar + main */}
+      <div className="sd-body">
+        <aside className={`sd-sidebar ${isSidebarOpen ? "open" : "collapsed"}`}>
+          <nav className="sd-nav">
+            <button
+              className={`sd-nav-btn ${activePage === "home" ? "active" : ""}`}
+              onClick={() => handleTabClick("home")}
+            >
+              <FaHome />
+              {isSidebarOpen && <span>Home</span>}
+            </button>
 
-          <button
-            className={activePage === "classes" ? "active" : ""}
-            onClick={() => handleTabClick("classes")}
-          >
-            <FaClipboardList /> {isSidebarOpen && <span>Classes</span>}
-          </button>
+            <button
+              className={`sd-nav-btn ${activePage === "classes" ? "active" : ""}`}
+              onClick={() => handleTabClick("classes")}
+            >
+              <FaClipboardList />
+              {isSidebarOpen && <span>Classes</span>}
+            </button>
 
-          <button
-            className={activePage === "settings" ? "active" : ""}
-            onClick={() => handleTabClick("settings")}
-          >
-            <FaCog /> {isSidebarOpen && <span>Settings</span>}
-          </button>
+            <button
+              className={`sd-nav-btn ${activePage === "settings" ? "active" : ""}`}
+              onClick={() => handleTabClick("settings")}
+            >
+              <FaCog />
+              {isSidebarOpen && <span>Settings</span>}
+            </button>
 
-          <button
-            className={activePage === "logout" ? "active" : ""}
-            onClick={() => handleTabClick("logout")}
-          >
-            <FaSignOutAlt /> {isSidebarOpen && <span>Logout</span>}
-          </button>
+            <button
+              className={`sd-nav-btn ${activePage === "logout" ? "active" : ""}`}
+              onClick={() => handleTabClick("logout")}
+            >
+              <FaSignOutAlt />
+              {isSidebarOpen && <span>Logout</span>}
+            </button>
+          </nav>
         </aside>
 
-        {/* Main Content */}
-        <main className="main-content">
+        <main className="sd-main">
           {/* Home Page: Enter Class Layout */}
           {activePage === "home" && !selectedClass && (
-            <div className="student-empty-state">
-              <img
-                src="/src/assets/books.png"
-                alt="Books"
-                className="illustration"
-              />
-              <p className="text-lg font-medium">
-                Enter your class to get started
-              </p>
-              <button
-                className="enter-class-btn"
-                onClick={() => setSelectedClass(classes[0])} // enter first class
-              >
+            <div className="sd-empty-state">
+              <img src="/src/assets/books.png" alt="Books" className="sd-illustration" />
+              <p className="sd-text-lg">Enter your class to get started</p>
+              <button className="sd-enter-class-btn" onClick={() => setSelectedClass(classes[0])}>
                 Enter Class
               </button>
             </div>
